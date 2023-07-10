@@ -2,23 +2,23 @@
 ini_set('display_errors', "On");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Connect to the database
-    // $db_host = 'localhost';
-    $db_host = 'bizmobile@43.207.10.105';
-    $db_user = 'root';
-    $db_pass = 'D@eesW0rd!2023';
-    $db_name = 'shopping_cart';
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    $db_host = 'db';
+    $db_user = 'user';
+    $db_pass = 'test';
+    $db_name = 'shoppingCart';
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
     if ($conn->connect_error) {
         die('Connection failed: ' . $conn->connect_error);
     }
 
     // Retrieve form data
+    $id = crc32(uniqid());
     $name = $_POST['name'];
     $price = $_POST['price'];
     $details = $_POST['details'];
 
     // Insert the product into the database
-    $sql = "INSERT INTO products (name, price, details) VALUES ('$name', '$price', '$details')";
+    $sql = "INSERT INTO Product (id, name, price, details) VALUES ('$id', '$name', '$price', '$details')";
     if ($conn->query($sql) === TRUE) {
         echo 'Product added successfully.';
     } else {

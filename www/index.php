@@ -12,11 +12,17 @@
 </head>
 <body>
     <div class="container">
+        <a href="product_registration.php">Product Registration</a>
+
         <?php echo "<h1>Product List</h1>"; ?>
 
         <?php
+            $db_host = 'db';
+            $db_user = 'user';
+            $db_pass = 'test';
+            $db_name = 'shoppingCart';
             // Connection check
-            $conn = mysqli_connect('db', 'user', 'test', 'shoppingCart');
+            $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 
             $query = 'SELECT * From Product';
